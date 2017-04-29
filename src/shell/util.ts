@@ -2,7 +2,7 @@ import * as readline from 'readline';
 
 let rl;
 
-
+// print out all an enum's options
 export function stringifyEnum(e): string {
 
   let enumProps: Map<number, string> = new Map();

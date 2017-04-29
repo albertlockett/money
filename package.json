@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc --outDir lib/es6 --target ES6",
+    "compile": "npm-run-all compile:typescript compile:es6",
+    "compile:es6": "babel lib/es6 --out-dir lib/es5",
+    "compile:typescript": "tsc --outDir lib/es6  --target ES6",
     "lint": "./node_modules/.bin/eslint '**/*.*s' --config .eslintrc",
     "start": "npm run compile && node lib/shell/shell.js",
-    "start:server": "npm run compile && nodemon lib/server/server.js",
+    "start:server": "nodemon lib/es5/server/server.js",
     "start:database": "docker run --name docker-mongo -p 27017:27017 -d mongo",
     "test": "mocha --require ts-node/register src/test/test-setup.ts src/data/test/transaction-dao.it.ts"
   },
@@ -29,6 +31,7 @@
   },
   "dependencies": {
     "colors": "1.1.2",
+    "data-loader": "0.1.8",
     "eslint": "3.19.0",
     "express": "4.15.2",
     "graphql": "0.9.5",

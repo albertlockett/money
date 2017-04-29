@@ -1,9 +1,10 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { graphqlExpress } from 'graphql-server-express';
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import { SERVER_PORT } from '../config/config';
 import schema from './graphql/executable-schema';
 
+require('babel-polyfill');
 const app = express();
 
 
@@ -14,6 +15,10 @@ app.get('/', (req, res) => {
 
 // graphql routes
 app.post('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
+}));
+
 
 
 const server = app.listen(SERVER_PORT, () => {

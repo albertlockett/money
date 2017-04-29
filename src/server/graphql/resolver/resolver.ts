@@ -1,7 +1,7 @@
+import { Query as transactionQueries } from './transaction-resolver';
+
 export default {
   Query: {
-    transactions() {
-      return [];
-    }
+    transactions: transactionQueries.transactions
   }
 }

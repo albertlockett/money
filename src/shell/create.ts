@@ -5,7 +5,7 @@
 import { argv } from 'yargs';
 import * as moment from 'moment';
 import { close, open, prompt, stringifyEnum } from './util';
-import { create } from '../data/transaction-dao';
+import DaoFactory from '../data/dao-factory';
 import Transaction from '../model/transaction';
 import TransactionType from '../model/transaction-type';
 import TransactionSubtype from '../model/transaction-subtype';
@@ -90,7 +90,8 @@ async function createTransaction() {
 
   // save the transaction
   const transaction = new Transaction(amount, type, subtype, date);
-  await create(transaction);
+  const dao = DaoFactory.getDao(Transaction);
+  await dao.create(transaction);
 }
 
 export default createTransaction;
