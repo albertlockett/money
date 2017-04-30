@@ -24,7 +24,7 @@ default args
 create args
   -a, --amount <number>
       amount of dollar in the tranasaction
-      
+
   -t, --today
       transaction took place today
 

@@ -37,7 +37,6 @@ class TransactionTypeLoader extends DataLoader<Transaction, TransactionType> {
 export const propertyResolvers = {
 
   type: (transaction, args, context) => {
-    console.log(transaction, args, context);
     if(!context.loaders.Transaction.type) {
       context.loaders.Transaction.type = new TransactionTypeLoader();
     }
@@ -48,23 +47,28 @@ export const propertyResolvers = {
 
 
 // Queries for types of Transaction
-export const Query = {
+export const query = {
 
   async transactions(root, args, context) {
     let dao = DaoFactory.getDao(Transaction);
     return await dao.findAll();
   }
 
-}
+};
 
 // Mutations for types of Transaction
-export const Mutation = {
+export const mutation = {
 
   async createTransaction(root, { amount, transactionType, date }, context) {
 
     // lookup transaction type
     const typeDao = DaoFactory.getDao(TransactionType);
     transactionType =  await typeDao.find({ value: transactionType });
+    if(!transactionType) {
+      throw new Error(
+        `Did not find transaction type with value of: ${transactionType}`
+      );
+    }
 
     // save transaction
     let transaction = new Transaction(amount, transactionType._id, date);
@@ -74,11 +78,11 @@ export const Mutation = {
     return transaction;
   }
 
-}
+};
 
 
-export const TransactionResolver: TypeResolver = {
+export const transactionResolver: TypeResolver = {
   propertyResolvers,
-  Query,
-  Mutation
-}
+  query,
+  mutation
+};

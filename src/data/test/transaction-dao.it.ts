@@ -28,8 +28,8 @@
 //           TransactionSubtypes.RESTAURANT);
 //       await create(transaction);
 //       let db = await MongoClient.connect(DB_CXN_STRING);
-//       let transactions = await db.collection('Transactions').find().toArray();
-//       expect(transactions).to.have.length(1);
+//       let results = await db.collection('Transactions').find().toArray();
+//       expect(results).to.have.length(1);
 //     });
 //
 //   });

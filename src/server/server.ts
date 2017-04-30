@@ -1,12 +1,12 @@
+import 'babel-polyfill';
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import { SERVER_PORT } from '../config/config';
 import schema from './graphql/executable-schema';
 
-require('babel-polyfill');
-const app = express();
 
+const app = express();
 
 app.get('/', (req, res) => {
   res.set('Content-type', 'application/json');
@@ -24,12 +24,13 @@ app.post('/graphql', bodyParser.json(), graphqlExpress(
 );
 app.use('/graphiql', graphiqlExpress(
   {
-    endpointURL: '/graphql',
+    endpointURL: '/graphql'
   })
 );
 
 
 
 const server = app.listen(SERVER_PORT, () => {
+  // tslint disable 
   console.log(`Server listening on port: ${SERVER_PORT}`);
 });

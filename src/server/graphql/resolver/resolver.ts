@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { TypeResolver } from './type-resolver';
-import { TransactionResolver } from './transaction-resolver';
-import { TransactionTypeResolver } from './transaction-type-resolver';
+import { transactionResolver } from './transaction-resolver';
+import { transactionTypeResolver } from './transaction-type-resolver';
 
 
 function combineResolvers(resolvers: { [s: string]: TypeResolver; }) {
@@ -11,19 +11,19 @@ function combineResolvers(resolvers: { [s: string]: TypeResolver; }) {
     Mutation: {}
   };
 
-  _.forEach(resolvers, (resolver, key) => {
+  _.forEach(resolvers, (resolver: TypeResolver, key) => {
     rootResolver[key] = resolver.propertyResolvers;
-    rootResolver.Query = Object.assign(rootResolver.Query, resolver.Query);
+    rootResolver.Query = Object.assign(rootResolver.Query, resolver.query);
     rootResolver.Mutation = Object.assign(rootResolver.Mutation,
-      resolver.Mutation);
+      resolver.mutation);
   });
 
   return rootResolver;
 }
 
 const resolver = combineResolvers({
-  Transaction: TransactionResolver,
-  TransactionType: TransactionTypeResolver
+  Transaction: transactionResolver,
+  TransactionType: transactionTypeResolver
 });
 
 

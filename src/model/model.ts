@@ -1,4 +1,2 @@
-export interface Model {
-  
-};
+export interface Model { }
 export default Model;

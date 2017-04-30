@@ -1,4 +1,3 @@
-
 interface TransactionSubtype {
   name: string;
   value: number;

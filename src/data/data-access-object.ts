@@ -3,32 +3,31 @@ import { MongoClient } from 'mongodb';
 import Model from '../model/model';
 
 export class DataAccessObject<T extends Model> {
-  COLLECTION_NAME: string
+  private COLLECTION_NAME: string;
 
   constructor(collectionName: string) {
     this.COLLECTION_NAME = collectionName;
   }
 
-  async findAll(filter?: object): Promise<T[]> {
+  public async findAll(filter?: object): Promise<T[]> {
     let db = await MongoClient.connect(DB_CXN_STRING);
-    let results = await db.collection(this.COLLECTION_NAME)
-      .find().toArray();
+    let results = await db.collection(this.COLLECTION_NAME).find().toArray();
     db.close();
     return results;
   }
 
-  async find(filter?: object): Promise<T> {
+  public async find(filter?: object): Promise<T> {
     let db = await MongoClient.connect(DB_CXN_STRING);
     let result = await db.collection(this.COLLECTION_NAME).findOne();
     db.close();
     return result;
   }
 
-  async create(model: T): Promise<void> {
+  public async create(model: T): Promise<void> {
     let db = await MongoClient.connect(DB_CXN_STRING);
     await db.collection(this.COLLECTION_NAME).insert(model);
     db.close();
-  };
-};
+  }
+}
 
 export default DataAccessObject;

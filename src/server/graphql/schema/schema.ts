@@ -1,6 +1,6 @@
 
 // Define types
-const Transaction:string = `
+const transaction: string = `
   type Transaction {
     date: String
     amount: String
@@ -9,29 +9,29 @@ const Transaction:string = `
   }
 `;
 
-const TransactionType:string = `
+const transactionType: string = `
   type TransactionType {
     name: String!
     value: Int!
     subtypes: [TransactionSubtype]
   }
-`
+`;
 
-const TransactionSubtype:string = `
+const transactionSubtype: string = `
   type TransactionSubtype {
     name: String!
     value: Int!
   }
 `;
 
-const types:string[] = [
-  Transaction,
-  TransactionType,
-  TransactionSubtype
+const types: string[] = [
+  transaction,
+  transactionType,
+  transactionSubtype
 ];
 
 // Define Queries
-const Query:string = `
+const query: string = `
   type Query {
     transactions: [Transaction]
     transactionTypes: [TransactionType]
@@ -40,7 +40,7 @@ const Query:string = `
 
 
 // define Mutations
-const Mutation:string = `
+const mutation: string = `
   type Mutation {
     createTransaction(
       date: String!
@@ -49,10 +49,10 @@ const Mutation:string = `
       transactionSubtype: Int
     ): Transaction
   }
-`
+`;
 
 // Define schema
-const schema:string = `
+const schema: string = `
   schema {
     query: Query
     mutation: Mutation
@@ -60,5 +60,5 @@ const schema:string = `
 `;
 
 export default  [
-  schema, Query, Mutation, ...types
+  schema, query, mutation, ...types
 ];

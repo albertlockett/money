@@ -20,7 +20,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      80
     ],
     "member-access": true,
     "member-ordering": [
@@ -54,7 +54,7 @@
     "no-require-imports": false,
     "no-shadowed-variable": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
+    "no-trailing-whitespace": false,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
@@ -82,7 +82,7 @@
     "trailing-comma": [
       true,
       {
-        "multiline": "always",
+        "multiline": "never",
         "singleline": "never"
       }
     ],
@@ -124,7 +124,6 @@
     ],
     "whitespace": [
       true,
-      "check-branch",
       "check-decl",
       "check-operator",
       "check-separator",

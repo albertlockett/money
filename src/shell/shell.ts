@@ -1,6 +1,6 @@
 import { argv } from 'yargs';
 import create from './create';
-import help from './help'
+import help from './help';
 
 
 async function run() {
@@ -14,4 +14,4 @@ async function run() {
   await create();
 }
 
-run()
+run();

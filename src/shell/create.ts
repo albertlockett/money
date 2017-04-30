@@ -5,13 +5,13 @@
 import { argv } from 'yargs';
 import * as moment from 'moment';
 import { close, open, prompt, stringifyEnum } from './util';
-import DaoFactory from '../data/dao-factory';
-import Transaction from '../model/transaction';
-import TransactionType from '../model/transaction-type';
+import { DaoFactory } from '../data/dao-factory';
+import { Transaction } from '../model/transaction';
+import { TransactionType } from '../model/transaction-type';
 import TransactionSubtype from '../model/transaction-subtype';
 
 async function collectAmount(): Promise<number> {
-  let amountStr
+  let amountStr;
   if(argv.a || argv.amount) {
     // collect amount from argument
     amountStr = argv.a || argv.amount;
@@ -43,7 +43,7 @@ async function collectDate(): Promise<Date> {
 
   // check if the date was provided as an offset
   if(argv.d || argv.day) {
-    const offset = Number(argv.d || argv.day);// TODO validate input
+    const offset = Number(argv.d || argv.day); // TODO validate input
     return moment().add(offset, 'days').toDate();
   }
 
@@ -89,9 +89,9 @@ async function createTransaction() {
   close(); // close prompt
 
   // save the transaction
-  // const transaction = new Transaction(amount, type, subtype, date);
-  // const dao = DaoFactory.getDao(Transaction);
-  // await dao.create(transaction);
+  const transaction = new Transaction(amount, type, date);
+  const dao = DaoFactory.getDao(Transaction);
+  await dao.create(transaction);
 }
 
 export default createTransaction;

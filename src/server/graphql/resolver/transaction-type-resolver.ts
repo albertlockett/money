@@ -1,28 +1,17 @@
 import { TypeResolver } from './type-resolver';
 import DaoFactory from '../../../data/dao-factory';
-import {
-  TransactionType as TransactionTypeModel
-} from '../../../model/transaction-type';
+import { TransactionType } from '../../../model/transaction-type';
 
-export const TransactionType = {
-
-  subtypes: (root, args, context) => {
-    return [];
-
-  }
-}
-
-
-export const Query = {
+export const query = {
 
   async transactionTypes(root, args, context) {
-    let dao = DaoFactory.getDao(TransactionTypeModel);
+    let dao = DaoFactory.getDao(TransactionType);
     return await dao.findAll();
   }
 
-}
+};
 
-export const TransactionTypeResolver: TypeResolver = {
-  propertyResolvers: TransactionType,
-  Query
-}
+export const transactionTypeResolver: TypeResolver = {
+  propertyResolvers: {},
+  query
+};

@@ -1,5 +1,5 @@
 export interface TypeResolver {
   propertyResolvers: object;
-  Query?: object;
-  Mutation?:object;
+  query?: object;
+  mutation?: object;
 }

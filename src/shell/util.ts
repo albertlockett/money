@@ -7,8 +7,8 @@ export function stringifyEnum(e): string {
 
   let enumProps: Map<number, string> = new Map();
 
-  for(let member in e) {
-    if(parseInt(member, 10) >= 0) {
+  for (let member in e) {
+    if ( parseInt(member, 10) >= 0) {
       enumProps.set(parseInt(member, 10), e[member]);
     }
   }

@@ -26,7 +26,7 @@
     "async-await/space-after-async": 2,
     "async-await/space-after-await": 2,
     "generator-star-spacing": [1, {"before": true, "after": false}],
-    "max-len": [1, 80, {"ignorePattern": "The source code for this program is not published or otherwise divested of its trade secrets"}],
+    "max-len": [1, 80 ],
     "quotes": 0,
     "no-console": 1,
     "no-debugger": 1,

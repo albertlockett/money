@@ -3,7 +3,7 @@ import TransactionType from './transaction-type';
 import TransactionSubtype from './transaction-subtype';
 
 export class Transaction implements Model {
-  _id: number;
+  _id?: number;
   amount: number;
   date: Date;
   type: TransactionType;
