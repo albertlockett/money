@@ -1,4 +1,5 @@
 import * as DataLoader from 'dataloader';
+import * as _ from 'lodash';
 import { TypeResolver } from './type-resolver';
 import DaoFactory from '../../../data/dao-factory';
 import { Transaction } from '../../../model/transaction';
@@ -41,6 +42,13 @@ export const propertyResolvers = {
       context.loaders.Transaction.type = new TransactionTypeLoader();
     }
     return context.loaders.Transaction.type.load(transaction);
+  },
+
+
+  subtype: async (transaction, args, context) => {
+    // assume at this point that transaction has had subtype saved as value key
+    let type = await propertyResolvers.type(transaction, args, context);
+    return _.find(type.subtypes, s => s.value === transaction.subtype);
   }
 
 };
@@ -59,19 +67,46 @@ export const query = {
 // Mutations for types of Transaction
 export const mutation = {
 
-  async createTransaction(root, { amount, transactionType, date }, context) {
+  async createTransaction(root, args, context) {
+    let {
+      amount,
+      date,
+      description,
+      transactionSubtype,
+      transactionType
+    } = args;
 
     // lookup transaction type
     const typeDao = DaoFactory.getDao(TransactionType);
     transactionType =  await typeDao.find({ value: transactionType });
     if(!transactionType) {
-      throw new Error(
-        `Did not find transaction type with value of: ${transactionType}`
+      throw new Error(``
+        + `Did not find transaction type with value of: ${transactionType}`
       );
     }
 
+    // if subtype is supplied, check if that subtype exists on the txn type
+    if(transactionSubtype) {
+      let subtypes = transactionType.subtypes;
+      if(!_.find(subtypes, t => t.value === transactionSubtype)) {
+        throw new Error(``
+          + `could not find subtype with value ${transactionSubtype} on `
+          + `transaction type ${
+            JSON.stringify(_.pick(transactionType, 'name', 'value', 'subtypes'))
+          }`
+        );
+      }
+    }
+
+
     // save transaction
-    let transaction = new Transaction(amount, transactionType._id, date);
+    let transaction = new Transaction(
+      amount,
+      transactionType._id,
+      date,
+      description,
+      transactionSubtype
+    );
     const transactionDao = DaoFactory.getDao(Transaction);
     await transactionDao.create(transaction);
 

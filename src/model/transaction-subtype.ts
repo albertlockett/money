@@ -1,4 +1,4 @@
-interface TransactionSubtype {
+export interface TransactionSubtype {
   name: string;
   value: number;
 }

@@ -2,8 +2,9 @@
 // Define types
 const transaction: string = `
   type Transaction {
-    date: String
     amount: String
+    date: String
+    description: String
     type: TransactionType
     subtype: TransactionSubtype
   }
@@ -42,12 +43,24 @@ const query: string = `
 // define Mutations
 const mutation: string = `
   type Mutation {
+
+    addSubtype(
+      name: String!
+      transactionType: Int!
+    ): TransactionType
+
     createTransaction(
       date: String!
       amount: Float!
       transactionType: Int!
+      description: String
       transactionSubtype: Int
     ): Transaction
+
+    createTransactionType(
+      name: String!
+    ): TransactionType
+
   }
 `;
 
