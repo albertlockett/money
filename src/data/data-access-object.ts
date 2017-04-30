@@ -11,10 +11,17 @@ export class DataAccessObject<T extends Model> {
 
   async findAll(filter?: object): Promise<T[]> {
     let db = await MongoClient.connect(DB_CXN_STRING);
-    let transactions = await db.collection(this.COLLECTION_NAME)
+    let results = await db.collection(this.COLLECTION_NAME)
       .find().toArray();
     db.close();
-    return transactions;
+    return results;
+  }
+
+  async find(filter?: object): Promise<T> {
+    let db = await MongoClient.connect(DB_CXN_STRING);
+    let result = await db.collection(this.COLLECTION_NAME).findOne();
+    db.close();
+    return result;
   }
 
   async create(model: T): Promise<void> {

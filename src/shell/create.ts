@@ -67,13 +67,13 @@ async function collectType(): Promise<TransactionType> {
 }
 
 
-async function collectSubtype():Promise<TransactionSubtype> {
-  let text = `What type of subtype transaction was it?` + '\n' +
-              '-1 - NONE\n' +
-              stringifyEnum(TransactionSubtype)    + '\n';
-  let subtypeStr = await prompt(text);
-  return TransactionSubtype[TransactionSubtype[Number(subtypeStr)]];
-}
+// async function collectSubtype():Promise<TransactionSubtype> {
+//   let text = `What type of subtype transaction was it?` + '\n' +
+//               '-1 - NONE\n' +
+//               stringifyEnum(TransactionSubtype)    + '\n';
+//   let subtypeStr = await prompt(text);
+//   return TransactionSubtype[TransactionSubtype[Number(subtypeStr)]];
+// }
 
 
 async function createTransaction() {
@@ -84,14 +84,14 @@ async function createTransaction() {
   const amount: number = await collectAmount();
   const date: Date = await collectDate();
   const type: TransactionType = await collectType();
-  const subtype: TransactionSubtype = await collectSubtype();
+  // const subtype: TransactionSubtype = await collectSubtype();
 
   close(); // close prompt
 
   // save the transaction
-  const transaction = new Transaction(amount, type, subtype, date);
-  const dao = DaoFactory.getDao(Transaction);
-  await dao.create(transaction);
+  // const transaction = new Transaction(amount, type, subtype, date);
+  // const dao = DaoFactory.getDao(Transaction);
+  // await dao.create(transaction);
 }
 
 export default createTransaction;

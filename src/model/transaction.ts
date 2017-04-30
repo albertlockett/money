@@ -13,8 +13,8 @@ export class Transaction implements Model {
   constructor(
     amount: number,
     type: TransactionType,
-    subtype: TransactionSubtype,
-    date?: Date
+    date: Date,
+    subtype?: TransactionSubtype,
   ) {
     this.amount = amount;
     this.type = type;

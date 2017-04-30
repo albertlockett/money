@@ -14,10 +14,19 @@ app.get('/', (req, res) => {
 });
 
 // graphql routes
-app.post('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
+app.post('/graphql', bodyParser.json(), graphqlExpress(
+  {
+    schema,
+    context: {
+      loaders: { Transaction: {} }
+    }
+  })
+);
+app.use('/graphiql', graphiqlExpress(
+  {
+    endpointURL: '/graphql',
+  })
+);
 
 
 
