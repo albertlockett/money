@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Router, Route } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { LoginPage } from './LoginPage';
-import { RegistrationPage } from './RegistrationPage';
+import { RegistrationPage } from '../registration/RegistrationPage';
 
 export class LoginApp extends React.Component<{}, {}> {
   render() {

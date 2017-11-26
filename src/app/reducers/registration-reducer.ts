@@ -4,12 +4,14 @@ export interface State {
   readonly confirmPassword: string;
   readonly password: string;
   readonly username: string;
+  readonly submitAttempted: false;
 };
 
 const initialState: State = {
   confirmPassword: '',
   password: '',
-  username: ''
+  username: '',
+  submitAttempted: false
 }
 
 export const reducer = (
@@ -21,6 +23,10 @@ export const reducer = (
   }
 
   switch(action.type) {
+
+    case actionTypes.ATTEMPT_SUBMIT: {
+      return { ...state, submitAttempted: true };
+    }
 
     case actionTypes.RESET: {
       return { ...initialState };
