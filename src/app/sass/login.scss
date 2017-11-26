@@ -1,0 +1,13 @@
+.login-page {
+  background-color: #cccccc;
+  background-image: url("/images/anchor_background.jpg");
+  background-size: 10%;
+  box-shadow: inset 0 0 0 1000px rgba(12,12,60,.2);
+
+  height: 100vh;
+
+  .login-form-container {
+    height: 100vh;
+    margin: 0;
+  }
+}
