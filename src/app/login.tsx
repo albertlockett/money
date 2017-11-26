@@ -1,15 +1,27 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
 import { routes } from './components/login/LoginRoutes';
 import { LoginApp } from './components/login/LoginApp';
 import { LoginPage } from './components/login/LoginPage';
+import { reducer as registrationReducer } from './reducers/registration-reducer';
 
 import './sass/main.scss';
 
-console.log("HAKDFJAKJFSD");
+
+// setup redux store
+const store = createStore(
+  combineReducers({
+    registration: registrationReducer
+  })
+);
+
 
 ReactDOM.render(
-  <LoginApp />,
+  <Provider store={store}>
+    <LoginApp />
+  </Provider>,
   document.getElementById('app'), 
 );
 
@@ -19,7 +31,9 @@ if (module.hot) {
   module.hot.accept('./components/login/LoginApp', () => { 
     const LoginApp = require('./components/login/LoginApp').LoginApp;
     ReactDOM.render(
-      <LoginApp />,
+      <Provider store={store}>
+        <LoginApp />
+      </Provider>,
       document.getElementById('app'),
     );
   });

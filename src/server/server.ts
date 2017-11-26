@@ -37,7 +37,13 @@ app.get('/login.html', (req: Request, res: Response) => {
   res.redirect('/login');
 });
 
-app.get('/login', (req: Request, res: Response) => {
+
+// routs for login page
+const loginRoutes: string[] = [
+  '/create-account',
+  '/login'
+]
+app.get(loginRoutes, (req: Request, res: Response) => {
   res.sendFile(path.join(DOCBASE, 'login.html'));
 });
 
