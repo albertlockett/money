@@ -55,7 +55,7 @@ async function collectDate(): Promise<Date> {
 
   // prompt user to enter the date
   let dateStr = await prompt(`When did you spend it (${format})? `);
-  return moment(dateStr, format).toDate();
+  // return moment(dateStr, format).toDate();
 }
 
 

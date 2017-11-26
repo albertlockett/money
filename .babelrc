@@ -4,6 +4,7 @@
     "stage-1"
   ],
   "plugins": [
-    "transform-async-to-generator"
+    "transform-async-to-generator",
+    "react-hot-loader/babel"
   ]
 }
