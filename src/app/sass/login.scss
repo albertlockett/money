@@ -8,6 +8,11 @@
     height: 100vh;
     margin: 0;
 
+    .registration-link {
+      position: relative;
+      top: 0.5em;
+    }
+
     .ui.card {
       width: 100%;
     }

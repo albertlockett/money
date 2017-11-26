@@ -1,12 +1,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { routes } from './components/login/LoginRoutes';
 import { LoginApp } from './components/login/LoginApp';
+import { LoginPage } from './components/login/LoginPage';
 
 import './sass/main.scss';
 
+console.log("HAKDFJAKJFSD");
+
 ReactDOM.render(
   <LoginApp />,
-  document.getElementById('app'),
+  document.getElementById('app'), 
 );
 
 // Handle hot reloading requests from Webpack

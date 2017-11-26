@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Input, Label } from 'semantic-ui-react';
 import Card from 'semantic-ui-react/dist/es/views/Card';
 import Form from 'semantic-ui-react/dist/es/collections/Form';
@@ -41,7 +42,11 @@ export class LoginPage extends React.Component<{}, {}> {
                           <Input name="password" type="password" />
                         </Form.Field>
                         <div>
+                          <Link className="registration-link" to="/create-account">
+                            Create an account
+                          </Link>
                           <Button
+                              color="blue"
                               floated="right"
                               type="button">
                             Login
