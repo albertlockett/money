@@ -7,5 +7,9 @@
   .login-form-container {
     height: 100vh;
     margin: 0;
+
+    .ui.card {
+      width: 100%;
+    }
   }
 }

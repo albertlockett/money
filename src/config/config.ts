@@ -1,3 +1,12 @@
+import { config } from 'dotenv';
+
+// import configuration from .env file
+config({ path: '.env' });
+
+// export authentication constants
+export const AMAZON_CLIENT_ID: string = process.env.AMAZON_CLIENT_ID;
+export const AMAZON_CLIENT_SECRET: string = process.env.AMAZON_CLIENT_SECRET;
+
 // app server config
 export const SERVER_PORT = 9001;
 

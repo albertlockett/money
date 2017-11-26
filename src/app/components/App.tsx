@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { LoginPage } from './login/LoginPage';
+import { HomePage } from './HomePage';
 
 export class App  extends React.Component<{}, {}> {
   render() {
     return (
-      <LoginPage />
+      <HomePage />
     );
   }
 }

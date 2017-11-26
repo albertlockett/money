@@ -7,13 +7,18 @@ export default {
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
       path.join(__dirname, 'src', 'app', 'index.tsx')
+    ],
+    login: [
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      path.join(__dirname, 'src', 'app', 'login.tsx')
     ]
   },
   target: 'web',
   output: {
     path: path.join(__dirname, 'lib', 'docbase'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name]-bundle.js'
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
