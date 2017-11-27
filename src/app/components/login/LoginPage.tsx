@@ -5,9 +5,35 @@ import Card from 'semantic-ui-react/dist/es/views/Card';
 import Form from 'semantic-ui-react/dist/es/collections/Form';
 import Grid from 'semantic-ui-react/dist/es/collections/Grid';
 import { AmazonAuthButton } from './AmazonAuthButton';
+import { LoginForm } from './LoginForm';
 
-export class LoginPage extends React.Component<{}, {}> {
-  render() {
+type State = { formError: boolean; };
+
+export class LoginPage extends React.Component<{}, State> {
+
+  constructor(props, context) {
+    super(props, context);
+    this.handleLoginAttempt = this.handleLoginAttempt.bind(this);
+    this.state = { formError: false };
+  }
+
+  private async handleLoginAttempt(
+    { username, password }: { username: string, password: string }
+  ) {
+    const result = await fetch('/login', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: [ ['Content-Type', 'application/json' ] ],
+      body: JSON.stringify({ username, password })
+    });
+    if(result.status === 200) {
+      window.location.href = '/';
+    } else {
+      this.setState({ formError: true });
+    }
+  }
+
+  public render() {
     return (
       <div className="login-page">
         <Grid
@@ -32,27 +58,9 @@ export class LoginPage extends React.Component<{}, {}> {
                       <AmazonAuthButton />
                     </Grid.Column>
                     <Grid.Column width={10}>
-                      <Form>
-                        <Form.Field>
-                          <label>Username</label>
-                          <Input name="username" />
-                        </Form.Field>
-                        <Form.Field>
-                          <label>Password</label>
-                          <Input name="password" type="password" />
-                        </Form.Field>
-                        <div>
-                          <Link className="registration-link" to="/create-account">
-                            Create an account
-                          </Link>
-                          <Button
-                              color="blue"
-                              floated="right"
-                              type="button">
-                            Login
-                          </Button>
-                        </div>
-                      </Form>
+                      <LoginForm 
+                          error={this.state.formError}
+                          handleLoginAttempt={this.handleLoginAttempt} />
                     </Grid.Column>
                   </Grid>
                 </Card.Content>

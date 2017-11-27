@@ -5,7 +5,12 @@ import { createStore, combineReducers } from 'redux';
 import { routes } from './components/login/LoginRoutes';
 import { LoginApp } from './components/login/LoginApp';
 import { LoginPage } from './components/login/LoginPage';
-import { reducer as registrationReducer } from './reducers/registration-reducer';
+import {
+  reducer as loginReducer
+} from './reducers/login-reducer';
+import { 
+  reducer as registrationReducer
+} from './reducers/registration-reducer';
 
 import './sass/main.scss';
 
@@ -13,6 +18,7 @@ import './sass/main.scss';
 // setup redux store
 const store = createStore(
   combineReducers({
+    login: loginReducer,
     registration: registrationReducer
   })
 );
@@ -22,7 +28,7 @@ ReactDOM.render(
   <Provider store={store}>
     <LoginApp />
   </Provider>,
-  document.getElementById('app'), 
+  document.getElementById('app')
 );
 
 // Handle hot reloading requests from Webpack

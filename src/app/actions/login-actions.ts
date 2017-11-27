@@ -1,13 +1,12 @@
-
 import { CommonAction, UpdateFieldAction } from './actions';
 
 export const actionTypes = {
-  ATTEMPT_SUBMIT: 'REGISTRATION_ATTEMPT_SUBMIT',
-  RESET: 'REGISTRATION_RESET',
-  UPDATE_FORM_FIELD: 'REGISTRATION_UPDATE_FORM_FIELD'
+  ATTEMPT_SUBMIT: 'LOGIN_ATTEMPT_SUBMIT',
+  RESET: 'LOGIN_RESET',
+  UPDATE_FORM_FIELD: 'LOGIN_UPDATE_FORM_FIELD',
+  SET_ERROR: 'LOGIN_SET_ERROR'
 };
 
-// define action creators
 export const attemptSubmit: (
   () => Action
 ) = () => ({ type: actionTypes.ATTEMPT_SUBMIT });

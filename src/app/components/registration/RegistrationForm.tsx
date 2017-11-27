@@ -7,8 +7,14 @@ import {
   RegistrationPasswordInput,
   validatePassword
 } from './RegistrationPasswordInput';
-import { RegistrationConfirmPasswordInput } from './RegistrationConfirmPasswordInput';
-import { attemptSubmit, reset, updateField } from '../../actions/registration-actions';
+import { 
+  RegistrationConfirmPasswordInput
+} from './RegistrationConfirmPasswordInput';
+import { 
+  attemptSubmit, 
+  reset, 
+  updateField
+} from '../../actions/registration-actions';
 import { State } from '../../reducers/registration-reducer';
 
 
@@ -47,33 +53,39 @@ export class UnwrappedRegistrationForm
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillMount() {
+  public componentWillMount() {
     this.props.reset();
   }
 
-  onConfirmPasswordChange(event) {
+  private onConfirmPasswordChange(event) {
     this.props.updateField(event.target.value, 'confirmPassword');
   }
 
-  onPasswordChange(event) {
+  private onPasswordChange(event) {
     this.props.updateField(event.target.value, 'password');
   }
 
-  onChangeUsername(event) {
+  private onChangeUsername(event) {
     this.props.updateField(event.target.value, 'username');
   }
 
-  onSubmit() {
+  private onSubmit() {
     this.props.attemptSubmit();
 
     // check if form is valid and if not, cancel form submission
     let formIsValid = true;
-    if(this.props.errors.username) formIsValid = false;
-    if(this.props.errors.confirmPassword) formIsValid = false;
-    if(!this.props.errors.password.valid) formIsValid = false;
+    if(this.props.errors.username) {
+      formIsValid = false;
+    }
+    if(this.props.errors.confirmPassword) {
+      formIsValid = false;
+    }
+    if(!this.props.errors.password.valid) {
+      formIsValid = false;
+    }
   }
 
-  render() {
+  public render() {
     return (
       <Form>
         <Form.Field 
@@ -153,7 +165,7 @@ const validate: (values: FormValues) => FormErrors = ({
   }
 
   return errors;
-}
+};
 
 
 

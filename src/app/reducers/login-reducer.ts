@@ -1,30 +1,23 @@
 import { UpdateFieldAction } from '../actions/actions';
-import {  actionTypes,  Action } from '../actions/registration-actions';
+import { actionTypes,  Action } from '../actions/login-actions';
 
 export interface State {
-  readonly confirmPassword: string;
-  readonly password: string;
-  readonly username: string;
-  readonly submitAttempted: false;
+  readonly username;
+  readonly password;
 }
 
 const initialState: State = {
-  confirmPassword: '',
-  password: '',
   username: '',
-  submitAttempted: false
+  password: ''
 };
 
 export const reducer = (
-  state: State = { ...initialState }, action?: Action
+  state: State = { ...initialState },
+  action?: Action
 ) => {
 
-  if(!action) {
-    return state;
-  }
-
   switch(action.type) {
-
+    
     case actionTypes.ATTEMPT_SUBMIT: {
       return { ...state, submitAttempted: true };
     }
@@ -41,9 +34,9 @@ export const reducer = (
       };
     }
 
-    default:
-      break;
+    default: break;
   }
+  
 
   return state;
 };

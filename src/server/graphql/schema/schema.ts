@@ -25,10 +25,18 @@ const transactionSubtype: string = `
   }
 `;
 
+const userType: string = `
+  type User {
+    username: String
+  }
+`;
+
+
 const types: string[] = [
   transaction,
   transactionType,
-  transactionSubtype
+  transactionSubtype,
+  userType
 ];
 
 // Define Queries
@@ -61,6 +69,11 @@ const mutation: string = `
       name: String!
     ): TransactionType
 
+    createUser(
+      username: String!
+      password: String!
+      confirmPassword: String!
+    ): User
   }
 `;
 

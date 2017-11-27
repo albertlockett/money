@@ -5,12 +5,12 @@ type PropTypes = {
   onChange: (event: object) => void,
   error: string;
   value: string;
-}
+};
 
 export class RegistrationConfirmPasswordInput 
     extends React.Component<PropTypes, {}> {
 
-  render() {
+  public render() {
     const input = (
       <Input
         name="confirmPassword"
@@ -19,7 +19,7 @@ export class RegistrationConfirmPasswordInput
         value={this.props.value} />
     );
 
-    let iconColor: any = "green", iconName: any = "check cirlce";
+    let iconColor: any = "green", iconName: any = "check circle";
     if(this.props.error) {
       iconColor = "red";
       iconName = "remove circle";
@@ -27,10 +27,10 @@ export class RegistrationConfirmPasswordInput
 
     const popupContent = (
       <div className="popup-rule">
-      <Icon color={iconColor} name={iconName}/>
-      <span>Passwords must match</span>
-    </div>
-    )
+        <Icon color={iconColor} name={iconName}/>
+        <span>Passwords must match</span>
+      </div>
+    );
 
     return (
       <Popup
