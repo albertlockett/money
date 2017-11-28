@@ -1,5 +1,11 @@
 # App for personal financial tracking
 
+## Stuff to remember to do:
+- Write more tests
+- Create user when authenticating with amazon
+- Fix how the dev environment works
+
+
 ## Development Setup
 
 ```
