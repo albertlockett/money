@@ -1,7 +1,9 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
+import * as ReactDOM from 'react-dom';
 import { createStore, combineReducers } from 'redux';
+import { client } from './client';
 import { routes } from './components/login/LoginRoutes';
 import { LoginApp } from './components/login/LoginApp';
 import { LoginPage } from './components/login/LoginPage';
@@ -25,9 +27,11 @@ const store = createStore(
 
 
 ReactDOM.render(
-  <Provider store={store}>
-    <LoginApp />
-  </Provider>,
+  <ApolloProvider client={client}>
+    <Provider store={store} >
+      <LoginApp />
+    </Provider>
+  </ApolloProvider>,
   document.getElementById('app')
 );
 
@@ -37,10 +41,12 @@ if (module.hot) {
   module.hot.accept('./components/login/LoginApp', () => { 
     const LoginApp = require('./components/login/LoginApp').LoginApp;
     ReactDOM.render(
-      <Provider store={store}>
-        <LoginApp />
-      </Provider>,
-      document.getElementById('app'),
+      <ApolloProvider client={client}>
+        <Provider store={store} >
+          <LoginApp />
+        </Provider>
+      </ApolloProvider>,
+      document.getElementById('app')
     );
   });
 }

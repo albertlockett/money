@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { Button, Form, Input } from 'semantic-ui-react';
+import { Button, Form, Input, Message } from 'semantic-ui-react';
 import { 
   PasswordError, 
   RegistrationPasswordInput,
@@ -20,7 +20,12 @@ import { State } from '../../reducers/registration-reducer';
 
 // define prop types
 interface PassedPropTypes {
-  onSubmit: (values: object) => void;
+  error: string;
+  onSubmit: (values: { 
+    username: string,
+    password: string, 
+    confirmPassword: string 
+  }) => void;
 }
 
 interface StatePropTypes {
@@ -83,6 +88,12 @@ export class UnwrappedRegistrationForm
     if(!this.props.errors.password.valid) {
       formIsValid = false;
     }
+
+    this.props.onSubmit({
+      username: this.props.username,
+      password: this.props.password,
+      confirmPassword: this.props.confirmPassword
+    });
   }
 
   public render() {
@@ -126,6 +137,7 @@ export class UnwrappedRegistrationForm
         </Form.Field>
         <Form.Field>
           <div>
+            {this.props.error && <Message negative>{this.props.error}</Message>}
             <Button color="blue" floated="right" onClick={this.onSubmit}>
               Create Account
             </Button>
@@ -169,9 +181,10 @@ const validate: (values: FormValues) => FormErrors = ({
 
 
 
-const mapStateToProps: (state: { registration: State }) => StatePropTypes = (
-  { registration }
-) => ({
+const mapStateToProps: (
+  state: { registration: State }, 
+  ownProps: PassedPropTypes
+) => StatePropTypes = ( { registration } ) => ({
   confirmPassword: registration.confirmPassword,
   password: registration.password,
   username: registration.username,

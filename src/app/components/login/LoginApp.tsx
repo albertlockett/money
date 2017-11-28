@@ -5,7 +5,7 @@ import { LoginPage } from './LoginPage';
 import { RegistrationPage } from '../registration/RegistrationPage';
 
 export class LoginApp extends React.Component<{}, {}> {
-  render() {
+  public render() {
     return (
       <div>
         <Router history={createBrowserHistory({})}>
@@ -16,6 +16,6 @@ export class LoginApp extends React.Component<{}, {}> {
         </Router>
       </div>
 
-    )
+    );
   }
 }
