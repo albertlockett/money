@@ -1,7 +1,18 @@
 @import "variables.scss";
+@import "header.scss";
 @import "login.scss";
 @import "registration.scss";
 
+#app {
+  padding-top: $header-height;
+  background: $background;
+
+  .ui.container {
+    background: white;
+    height: calc(100vh - #{$header-height});
+  }
+
+}
 
 .field-label {
   display: block;

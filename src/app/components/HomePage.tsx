@@ -1,7 +1,13 @@
 import * as React from 'react';
+import { Header } from 'semantic-ui-react';
 
 export class HomePage extends React.Component<{}, {}> {
-  render() {
-    return <h1>Home Page</h1>
+  public render() {
+    return (
+      <div>
+        <Header as="h1">Welcome</Header> 
+      </div>
+
+    );
   }
 }
