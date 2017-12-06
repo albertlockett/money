@@ -38,13 +38,22 @@ app.get('/login.html', (req: Request, res: Response) => {
 });
 
 
-// routs for login page
+// routes for login app
 const loginRoutes: string[] = [
   '/create-account',
   '/login'
-]
+];
 app.get(loginRoutes, (req: Request, res: Response) => {
   res.sendFile(path.join(DOCBASE, 'login.html'));
+});
+
+// routes for main app
+const appRoutes: string[] = [
+  '/transactions/*',
+  '/'
+];
+app.get(appRoutes, isLoggedIn, (req: Request, res: Response) => {
+  res.sendFile(path.join(DOCBASE, 'index.html'));
 });
 
 

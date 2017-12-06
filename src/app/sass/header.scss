@@ -21,10 +21,9 @@ $header-font-color: white;
     .logout-link {
       a {
         color: $header-font-color;
-      }
-
-      &:hover, &:active, &:focus {
-        text-decoration: underline;
+        &:hover, &:active, &:focus {
+          text-decoration: underline;
+        }
       }
     }
   }
