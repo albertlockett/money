@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import 'react-dates/initialize';
 import { App } from './components/App';
 
 import './sass/main.scss';

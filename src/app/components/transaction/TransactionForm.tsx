@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { Button, Dropdown, Form, Input } from 'semantic-ui-react';
+import { SingleDatePicker } from '../common/SingleDatePicker';
 
 export class TransactionForm extends React.Component {
 
   public render() {
+
+    const typeOptions = [
+      { text: "test", values: 0 }
+    ];
 
     const subtypeOptions = [
       { text: "test", value: 0}
@@ -16,7 +21,7 @@ export class TransactionForm extends React.Component {
         </Form.Field>
         <Form.Field>
           <label htmlFor="description">Date</label>
-          <Input name="date" />
+          <SingleDatePicker />
         </Form.Field>
         <Form.Field>
           <label htmlFor="description">Description</label>
@@ -24,7 +29,7 @@ export class TransactionForm extends React.Component {
         </Form.Field>
         <Form.Field>
           <label htmlFor="type">Type</label>
-          <Input name="type" />
+          <Dropdown name="subtype" fluid selection options={typeOptions} />
         </Form.Field>
         <Form.Field>
           <label htmlFor="subtype">Subtype</label>
@@ -33,7 +38,6 @@ export class TransactionForm extends React.Component {
         <Form.Field>
           <Button color="blue" floated="right">Save</Button>
         </Form.Field>
-
       </Form>
     );
   }

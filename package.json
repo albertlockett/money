@@ -89,6 +89,7 @@
     "passport-local": "1.0.0",
     "react": "16.1.1",
     "react-apollo": "2.0.1",
+    "react-dates": "15.3.0",
     "react-dom": "16.1.1",
     "react-redux": "5.0.6",
     "react-router": "4.2.0",
