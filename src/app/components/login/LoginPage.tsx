@@ -42,7 +42,7 @@ export class LoginPage extends React.Component<{}, State> {
             columns={3}
             verticalAlign="middle">
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column className="modal">
               <Card>
                 <Card.Content>
                   <Card.Header>
@@ -51,16 +51,16 @@ export class LoginPage extends React.Component<{}, State> {
                 </Card.Content>
                 <Card.Content>
                   <Grid divided>
-                  <Grid.Column width={6}>
+                    <Grid.Column width={7} className="partner-login">
                       <label className="field-label">
                         <br />
                       </label>
                       <AmazonAuthButton />
                     </Grid.Column>
-                    <Grid.Column width={10}>
+                    <Grid.Column width={9} className="form-login">
                       <LoginForm 
-                          error={this.state.formError}
-                          handleLoginAttempt={this.handleLoginAttempt} />
+                            error={this.state.formError}
+                            handleLoginAttempt={this.handleLoginAttempt} />
                     </Grid.Column>
                   </Grid>
                 </Card.Content>

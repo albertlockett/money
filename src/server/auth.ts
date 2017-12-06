@@ -109,6 +109,7 @@ export const configureAuthentication = (app: Express): void => {
       res: Response, 
       next: (err?: Error) => void
     ) => {
+    console.log('received login request');
     passport.authenticate('local', (
       err: Error, 
       user: object | boolean, 
@@ -117,6 +118,7 @@ export const configureAuthentication = (app: Express): void => {
       if(err) { return next(err); }
       if(!user) { return res.sendStatus(401); }
       req.logIn(user, (err: Error) => {
+        console.log('done authenticating user');
         if(err) { return next(err); }
         return res.sendStatus(200);
       });

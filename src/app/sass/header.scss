@@ -1,10 +1,31 @@
+$header-font-color: white;
+
 .app-header {
-  color: white;
+  color: $header-font-color;
   background: $dark-blue;
   position: fixed;
   top: 0;
   left: 0;
-  border: 1px solid;
   height: $header-height;
   width: 100vw;
+
+  .grid {
+    height: $header-height;
+    margin: 0;
+
+    .app-title {
+      color: $header-font-color;
+      font-style: italic;
+    }
+
+    .logout-link {
+      a {
+        color: $header-font-color;
+      }
+
+      &:hover, &:active, &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
 }
