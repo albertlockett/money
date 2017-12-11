@@ -12,6 +12,7 @@ type VimEditorState = {
 
 
 const Keys = {
+  h: 72,
   i: 73
 };
 
@@ -20,6 +21,15 @@ export const handleKeyCommand: (
   command: string, vimState: VimEditorState
 ) => VimEditorState | void = (command, vimState) => {
   
+
+  if(command === 'char-left') {
+    if(vimState.commandMode) {
+      return moveCursor({ x: -1 }, vimState);
+    } else {
+      return insertCharacter('h', vimState);
+    }
+  }
+
   if(command === 'insert') {
 
     if(vimState.commandMode) {
@@ -74,6 +84,10 @@ export const insertCharacter: (
 export const keyBindingFn: (e) => string = (event) => {
   
   switch(event.keyCode) {
+
+    case Keys.h:
+      return 'char-left';
+
     case Keys.i: 
       return 'insert';
     
@@ -82,3 +96,24 @@ export const keyBindingFn: (e) => string = (event) => {
   }
 };
 
+
+type CursorDiff = {
+  x: number; // horizontal movement within editor (< 0 = left, > 0 = right)
+};
+export const moveCursor: (
+  c: CursorDiff, v: VimEditorState
+) => VimEditorState = (cursorDiff, vimState) => {
+
+  let editorState = vimState.editorState;
+  let selection = editorState.getSelection();
+  let focusOffset = selection.getFocusOffset();
+
+  let nextFocusOffset = Math.max(0, focusOffset + cursorDiff.x);
+  selection = selection.merge({ 
+    anchorOffset: nextFocusOffset, 
+    focusOffset: nextFocusOffset 
+  });
+  editorState = EditorState.forceSelection(editorState, selection);
+
+  return { ...vimState, editorState };
+};
