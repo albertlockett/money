@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react';
 import { Header } from './common/header';
 import { HomePage } from './HomePage';
 import { TransactionPage } from './transaction/TransactionPage';
+import { DraftVimPage } from './DraftVimPage';
 
 export class App  extends React.Component<{}, {}> {
   public render() {
@@ -15,6 +16,7 @@ export class App  extends React.Component<{}, {}> {
           <div>
             <Route exact path="/" component={HomePage} />
             <Route expact path="/transactions/*" component={TransactionPage} />
+            <Route expact path="/draft-vim" component={DraftVimPage} />
           </div>
         </Router>
       </Container>

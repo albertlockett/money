@@ -49,6 +49,7 @@ app.get(loginRoutes, (req: Request, res: Response) => {
 
 // routes for main app
 const appRoutes: string[] = [
+  '/draft-vim',
   '/transactions/*',
   '/'
 ];

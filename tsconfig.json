@@ -9,7 +9,8 @@
   "declaration": false,
   "noImplicitAny": false,
   "removeComments": true,
-  "noLib": false
+  "noLib": false,
+  "locale": "en"
 },
 "include": [
   "src/**/*"

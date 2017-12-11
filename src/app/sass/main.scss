@@ -30,3 +30,11 @@
 .popup-rule {
   margin-bottom: 5px;
 }
+
+.draft-editor-container {
+  font-family: Menlo;
+
+  &.commandMode-true {
+    caret-color: tomato;
+  }
+}
